@@ -2,7 +2,7 @@ name: Publish package to GitHub Packages
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 jobs:
   build:
@@ -16,9 +16,22 @@ jobs:
         with:
           node-version: 20.x
           registry-url: https://npm.pkg.github.com/
+
       - run: corepack enable
-      - run: yarn
-      - run: yarn build
-      - run: npm publish
+
+      - name: 📝 Setup .yarnrc.yml
+        run: |
+          yarn config set npmScopes.3dsteam.npmRegistryServer "https://npm.pkg.github.com"
+          yarn config set npmScopes.3dsteam.npmAlwaysAuth true
+          yarn config set npmScopes.3dsteam.npmAuthToken $NPM_AUTH_TOKEN
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: yarn install --immutable
+
+      - name: 🔨 Build package
+        run: yarn build
+
+      - name: 🚀 Publish package
+        run: yarn npm publish
