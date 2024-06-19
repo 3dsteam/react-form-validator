@@ -1,5 +1,5 @@
 {
-  "name": "react-form-validator",
+  "name": "@3dsteam/react-form-validator",
   "description": "React hook for form validation",
   "version": "1.0.0",
   "type": "module",
