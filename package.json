@@ -1,0 +1,31 @@
+{
+  "name": "react-form-validator",
+  "description": "React hook for form validation",
+  "version": "1.0.0",
+  "type": "module",
+  "module": "dist/react-library-template.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": "https://github.com/lorem-ipsum/react-library-template.git",
+  "author": "Lorem Ipsum <lorem.ipsum@gmail.com>",
+  "packageManager": "yarn@4.3.0",
+  "scripts": {
+    "build": "vite build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1"
+  }
+}
