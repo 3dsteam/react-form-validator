@@ -3,7 +3,7 @@
   "description": "React hook for form validation",
   "version": "1.0.0",
   "type": "module",
-  "module": "dist/react-library-template.js",
+  "module": "dist/react-form-validator.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -18,7 +18,9 @@
     "lint": "eslint --fix",
     "lint:check": "eslint",
     "prettier": "prettier --write .",
-    "prettier:check": "prettier --check ."
+    "prettier:check": "prettier --check .",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -41,6 +43,7 @@
     "globals": "^15.6.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
+    "pinst": "^3.0.0",
     "prettier": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
