@@ -15,13 +15,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20.x
-          registry-url: https://npm.pkg.github.com/
 
       - run: corepack enable
 
       - name: 📝 Setup .yarnrc.yml
         run: |
-          yarn config set npmScopes.3dsteam.npmRegistryServer "https://npm.pkg.github.com"
+          yarn config set npmScopes.3dsteam.npmPublishRegistry "https://npm.pkg.github.com"
           yarn config set npmScopes.3dsteam.npmAlwaysAuth true
           yarn config set npmScopes.3dsteam.npmAuthToken $NPM_AUTH_TOKEN
         env:
