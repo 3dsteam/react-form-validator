@@ -5,6 +5,36 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@3dsteam/react-form-validator@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@3dsteam/react-form-validator@workspace:."
+  dependencies:
+    "@eslint/compat": "npm:^1.1.0"
+    "@eslint/js": "npm:^9.5.0"
+    "@types/react": "npm:^18.3.3"
+    "@vitejs/plugin-react-swc": "npm:^3.7.0"
+    eslint: "npm:9.x"
+    eslint-config-prettier: "npm:^9.1.0"
+    eslint-plugin-react: "npm:^7.34.3"
+    globals: "npm:^15.6.0"
+    husky: "npm:^9.0.11"
+    lint-staged: "npm:^15.2.7"
+    moment: "npm:^2.30.1"
+    pinst: "npm:^3.0.0"
+    prettier: "npm:^3.3.2"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    react-i18next: "npm:^14.1.2"
+    typescript: "npm:^5.4.5"
+    typescript-eslint: "npm:^7.13.1"
+    vite: "npm:^5.3.1"
+    vite-plugin-dts: "npm:^3.9.1"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  languageName: unknown
+  linkType: soft
+
 "@babel/helper-string-parser@npm:^7.24.7":
   version: 7.24.7
   resolution: "@babel/helper-string-parser@npm:7.24.7"
@@ -3581,36 +3611,6 @@ __metadata:
   checksum: 10c0/a752496c1941f958f2e8ac56239172296fcddce1365ce45222d04a1947e0cc5547df3e8447f855a81d6d39f008d7c32eab43db3712077f09e3f67c4874973e85
   languageName: node
   linkType: hard
-
-"react-form-validator@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-form-validator@workspace:."
-  dependencies:
-    "@eslint/compat": "npm:^1.1.0"
-    "@eslint/js": "npm:^9.5.0"
-    "@types/react": "npm:^18.3.3"
-    "@vitejs/plugin-react-swc": "npm:^3.7.0"
-    eslint: "npm:9.x"
-    eslint-config-prettier: "npm:^9.1.0"
-    eslint-plugin-react: "npm:^7.34.3"
-    globals: "npm:^15.6.0"
-    husky: "npm:^9.0.11"
-    lint-staged: "npm:^15.2.7"
-    moment: "npm:^2.30.1"
-    pinst: "npm:^3.0.0"
-    prettier: "npm:^3.3.2"
-    react: "npm:^18.3.1"
-    react-dom: "npm:^18.3.1"
-    react-i18next: "npm:^14.1.2"
-    typescript: "npm:^5.4.5"
-    typescript-eslint: "npm:^7.13.1"
-    vite: "npm:^5.3.1"
-    vite-plugin-dts: "npm:^3.9.1"
-  peerDependencies:
-    react: ">=18"
-    react-dom: ">=18"
-  languageName: unknown
-  linkType: soft
 
 "react-i18next@npm:^14.1.2":
   version: 14.1.2
