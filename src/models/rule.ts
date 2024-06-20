@@ -15,6 +15,9 @@ export interface IRule {
     lteDate?: string | Date | IRuleMessage<string | Date>;
     gtDate?: string | Date | IRuleMessage<string | Date>;
     gteDate?: string | Date | IRuleMessage<string | Date>;
+    // Custom
+    blockly?: string;
+    custom?: (data: Record<string, unknown>, field: string) => boolean | string;
 }
 
 export interface IRuleMessage<T> {

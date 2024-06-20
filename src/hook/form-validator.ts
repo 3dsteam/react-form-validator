@@ -97,12 +97,14 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                 const key = rule.key;
                 // Get value from data
                 const value = data[key];
-                // Validate data
+                // Validate required
                 if (rule.required && !value) {
                     errors[key] = isRuleMessage(rule.required)
                         ? rule.required.message
                         : getTranslation("This field is required");
-                } else if (value !== undefined && value !== null) {
+                }
+                // Validate on value
+                else if (value !== undefined && value !== null) {
                     // Check if email
                     if (rule.isEmail) {
                         const regex = options.current.emailRegex ?? emailRegex;
@@ -113,7 +115,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if URL
-                    else if (rule.isURL) {
+                    if (rule.isURL) {
                         const regex = options.current.urlRegex ?? urlRegex;
                         if (!regex.test(value as string)) {
                             errors[key] = isRuleMessage(rule.isURL)
@@ -122,7 +124,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if string is too short
-                    else if (rule.minLength !== undefined) {
+                    if (rule.minLength !== undefined) {
                         const minLength = typeof rule.minLength === "number" ? rule.minLength : rule.minLength.value;
                         if ((value as string).length < minLength) {
                             errors[key] = isRuleMessage(rule.minLength)
@@ -131,7 +133,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if string is too long
-                    else if (rule.maxLength !== undefined) {
+                    if (rule.maxLength !== undefined) {
                         const maxLength = typeof rule.maxLength === "number" ? rule.maxLength : rule.maxLength.value;
                         if ((value as string).length > maxLength) {
                             errors[key] = isRuleMessage(rule.maxLength)
@@ -140,7 +142,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if pattern is matched
-                    else if (rule.pattern) {
+                    if (rule.pattern) {
                         const regex = isRuleMessage(rule.pattern) ? rule.pattern.value : rule.pattern;
                         if (!regex.test(value as string)) {
                             errors[key] = isRuleMessage(rule.pattern)
@@ -149,7 +151,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if number is too small
-                    else if (rule.min !== undefined) {
+                    if (rule.min !== undefined) {
                         const minValue = typeof rule.min === "number" ? rule.min : rule.min.value;
                         if ((value as number) < minValue) {
                             errors[key] = isRuleMessage(rule.min)
@@ -158,7 +160,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if number is too big
-                    else if (rule.max !== undefined) {
+                    if (rule.max !== undefined) {
                         const maxValue = typeof rule.max === "number" ? rule.max : rule.max.value;
                         if ((value as number) > maxValue) {
                             errors[key] = isRuleMessage(rule.max)
@@ -167,7 +169,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if date is before
-                    else if (rule.ltDate) {
+                    if (rule.ltDate) {
                         const date = moment(isRuleMessage(rule.ltDate) ? rule.ltDate.value : rule.ltDate).format(
                             options.current.dateFormat,
                         );
@@ -178,7 +180,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if date is on or before
-                    else if (rule.lteDate) {
+                    if (rule.lteDate) {
                         const date = moment(isRuleMessage(rule.lteDate) ? rule.lteDate.value : rule.lteDate).format(
                             options.current.dateFormat,
                         );
@@ -189,7 +191,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if date is after
-                    else if (rule.gtDate) {
+                    if (rule.gtDate) {
                         const date = moment(isRuleMessage(rule.gtDate) ? rule.gtDate.value : rule.gtDate).format(
                             options.current.dateFormat,
                         );
@@ -200,7 +202,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                         }
                     }
                     // Check if date is on or after
-                    else if (rule.gteDate) {
+                    if (rule.gteDate) {
                         const date = moment(isRuleMessage(rule.gteDate) ? rule.gteDate.value : rule.gteDate).format(
                             options.current.dateFormat,
                         );
@@ -209,6 +211,29 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
                                 ? rule.gteDate.message
                                 : getTranslation("Date must be on or after {{value}}", { value: date });
                         }
+                    }
+                }
+                // Check if custom validation
+                if (rule.custom) {
+                    // Check if custom validation failed
+                    const valid = rule.custom(data, key);
+                    if (!valid || typeof valid === "string") {
+                        errors[key] = valid || getTranslation("Invalid value");
+                    }
+                }
+                // Check if blockly validation
+                if (rule.blockly) {
+                    try {
+                        const valid = new Function("data", rule.blockly)(data);
+                        if (!valid || typeof valid === "string") {
+                            if (valid === undefined) {
+                                console.warn(`Blockly validation for ${key} is not returning any value`);
+                            }
+                            errors[key] = valid || getTranslation("Invalid value");
+                        }
+                    } catch (e) {
+                        console.warn(e);
+                        errors[key] = getTranslation("Validation error (blockly)");
                     }
                 }
             }
