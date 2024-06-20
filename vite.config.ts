@@ -7,8 +7,7 @@ export default {
     build: {
         lib: {
             entry: "./src/index.ts",
-            name: "react-form-validator",
-            formats: ["es"],
+            name: "react-form-validator"
         },
         rollupOptions: {
             external: ["react", "react-dom"],
