@@ -15,7 +15,8 @@
   "scripts": {
     "postinstall": "husky",
     "build": "vite build",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint --fix",
     "lint:check": "eslint",
     "prettier": "prettier --write .",
