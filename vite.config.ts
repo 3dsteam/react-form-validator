@@ -1,9 +1,9 @@
 import react from "@vitejs/plugin-react-swc";
-import dts from 'vite-plugin-dts';
+import dts from "vite-plugin-dts";
 
 /** @type {import('vite').UserConfig} */
 export default {
-    plugins: [react(), dts({rollupTypes: true})],
+    plugins: [react(), dts({ rollupTypes: true })],
     build: {
         lib: {
             entry: "./src/index.ts",
@@ -14,4 +14,7 @@ export default {
             external: ["react", "react-dom"],
         },
     },
-}
+    test: {
+        environment: "jsdom",
+    },
+};
