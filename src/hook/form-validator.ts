@@ -84,7 +84,7 @@ export const useFormValidator = (props?: IFormValidatorProps) => {
      */
     const validate = useCallback(
         (data: Record<string, unknown>, live = true) => {
-            flagValidated.current = live;
+            if (live) flagValidated.current = true;
             const errors: Record<string, string> = {};
             // Check if empty rules
             if (rules.current.length === 0) {
