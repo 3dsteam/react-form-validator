@@ -1,7 +1,7 @@
 {
   "name": "@3dsteam/react-form-validator",
   "description": "React hook for form validation",
-  "version": "1.1.0-rc.2",
+  "version": "1.1.0-rc.3",
   "type": "module",
   "main": "dist/react-form-validator.umd.cjs",
   "module": "dist/react-form-validator.js",
